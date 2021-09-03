@@ -3,11 +3,12 @@ import React from 'react';
 import { LoginContainer } from './style';
 import { CssTextField, CssCheckbox } from '../../utils/styleMaterialUi';
 import InputPassword from '../../layaut/InputPassword';
+import { theme } from '../../utils/styleMaterialUi';
 
 import { Container, Button, FormControlLabel } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 
-const LoginPage = ({ checked, formData, history, handleChange, login, setChecked, theme }) => (
+const LoginPage = ({ checked, formData, history, handleChange, isRequired, login, setChecked }) => (
 	<LoginContainer className="d-flex align-items-center px-3">
 		<Container maxWidth="xs" className="container p-5">
 			<h4 className="pl-1 mb-4 text-center">Iniciar sesion</h4>
@@ -26,18 +27,17 @@ const LoginPage = ({ checked, formData, history, handleChange, login, setChecked
 						label="Email"
 						variant="outlined"
 						color="secondary"
-						// color={isRequired.email ? "primary" : "secondary"}
 						className="mb-4"
 						name="email"
 						onChange={handleChange}
-						// error
-						// helperText={isRequired.email ? "El email es obligatorio." : ""}
+						error={isRequired.email}
+						helperText={isRequired.email ? "El email es obligatorio." : ""}
 						required
 					/>
-
+					
 					<InputPassword
 						handleChange={handleChange}
-						isRequired={true}
+						isRequired={isRequired}
 						text="Password"
 						typeName="password"
 					/>
