@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
-const DrawerComponent = ({ classes, handleDrawerClose, open }) => (
+const DrawerComponent = ({ createTask, classes, handleDrawerClose, logout, open }) => (
 	<Drawer
 		variant="persistent"
 		anchor="left"
@@ -31,7 +31,6 @@ const DrawerComponent = ({ classes, handleDrawerClose, open }) => (
 				alt="logo"
 				className="img-logo"
 				style={{width: '90px', height: '90px'}}
-				// onClick={() => history.push('/')}
 			/>
 		</List>
 
@@ -57,11 +56,12 @@ const DrawerComponent = ({ classes, handleDrawerClose, open }) => (
 				color="secondary"
 				className='mt-3 mb-4'
 				endIcon={<AddIcon />}
+				onClick={createTask}
 			>
 		  		Crear tarea
 			</Button>
 
-			<div>
+			<div onClick={logout}>
 				<Typography
 					variant="body1"
 					component="span"

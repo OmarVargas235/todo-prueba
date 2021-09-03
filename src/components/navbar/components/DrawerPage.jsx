@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // const DrawerPage = ({ auth, dataUser, history, isActiveLink, setActiveSearch }) => {
-const DrawerPage = () => {
+const DrawerPage = ({ createTask, logout }) => {
 
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
@@ -59,8 +59,10 @@ const DrawerPage = () => {
 			</AppBar>
 
 			<DrawerComponent
+				createTask={createTask}
 				classes={classes}
 				handleDrawerClose={handleDrawerClose}
+				logout={logout}
 				open={open}
 			/>
 		</div>

@@ -8,8 +8,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
-// const MenuMdPage = ({ auth, classes, dataUser, history, isActiveLink, setActiveSearch }) => (
-const MenuMdPage = ({ createTask }) => (
+const MenuMdPage = ({ createTask, logout }) => (
 	<ThemeProvider theme={theme}>
 		<Grid container>
 			<Grid item sm={2} className="text-center">
@@ -17,7 +16,6 @@ const MenuMdPage = ({ createTask }) => (
 					src={Logo}
 					alt="logo"
 					className="img-logo"
-					// onClick={() => history.push('/')}
 				/>
 			</Grid>
 			
@@ -53,6 +51,7 @@ const MenuMdPage = ({ createTask }) => (
 				alignContent="center"
 				justifyContent="center"
 				className="pointer"
+				onClick={logout}
 			>
 				<Typography
 					variant="body1"

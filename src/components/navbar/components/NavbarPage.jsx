@@ -7,28 +7,22 @@ import { theme } from '../../../utils/styleMaterialUi'
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
-const NavbarPage = ({ createTask, matches }) => (
+const NavbarPage = ({ createTask, logout, matches }) => (
 	<NavbarContainer className="p-3">
 		<ThemeProvider theme={theme}>
 			{
 				matches 
 					? <MenuMdPage
 						createTask={createTask}
-						// auth={auth}
-						// auth={{isAuthenticated: true}}
-						// classes={classes}
+						logout={logout}
 						// dataUser={dataUser}
 						// history={history}
-						// isActiveLink={isActiveLink}
-						// setActiveSearch={setActiveSearch}
 					/>
 					: <DrawerPage
 						createTask={createTask}
-						// auth={auth}
+						logout={logout}
 						// dataUser={dataUser}
 						// history={history}
-						// isActiveLink={isActiveLink}
-						// setActiveSearch={setActiveSearch}
 					/>
 			}
 		</ThemeProvider>
