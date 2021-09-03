@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import CreateAccountPage from './CreateAccountPage';
 import { alert } from '../../utils/alert';
-import { styleMaterialUiTheme } from '../../utils/styleMaterialUi';
 import { useForm } from '../../customHooks/useForm';
 import { useValidateForm } from '../../customHooks/useValidateForm';
 import { requestWithoutToken } from '../../utils/fetch';
@@ -12,8 +11,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 const CreateAccount = ({ history }) => {
 
 	const matches = useMediaQuery('(max-width: 576px)');
-
-	const theme = styleMaterialUiTheme();
 
 	const [ formData, handleChange ] = useForm({
 		name: '',
@@ -39,9 +36,10 @@ const CreateAccount = ({ history }) => {
 
 		const { name, lastName, email, password, repeatPassword } = formData;
 
-		// Validaciones en el frontend
+		// Comprobar que todos los inputs no esten vacios
 		setIsRequired(required);
 
+		// Validar que el formulario no este vacio
 		if ( validate({ name, lastName, email, password, repeatPassword }) ) return;
 		
 		// Enviando la data del formulario al backend
@@ -59,7 +57,6 @@ const CreateAccount = ({ history }) => {
 			isRequired={isRequired}
 			matches={matches}
 			registerUser={registerUser}
-			theme={theme}
 		/>
 	)
 }

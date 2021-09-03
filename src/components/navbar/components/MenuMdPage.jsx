@@ -8,7 +8,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
-const MenuMdPage = ({ createTask, logout }) => (
+const MenuMdPage = ({ createTask, dataUser, logout }) => (
 	<ThemeProvider theme={theme}>
 		<Grid container>
 			<Grid item sm={2} className="text-center">
@@ -20,14 +20,17 @@ const MenuMdPage = ({ createTask, logout }) => (
 			</Grid>
 			
 			<Grid item sm={4} container direction="row" alignContent="center" justifyContent="center">
-				<Avatar style={{backgroundColor: '#572845'}}>OV</Avatar>
-		
+				<Avatar style={{backgroundColor: '#572845'}}>
+					{dataUser.name.charAt(0).toUpperCase()}
+					{dataUser.lastName.charAt(0).toUpperCase()}
+				</Avatar>
+				
 				<Typography
 					variant="body1"
 					component="span"
-					className="ml-2"
+					className="ml-2 text-capitalize font-weight-bold"
 				>
-					Omar Vargas
+					{dataUser.name} {dataUser.lastName}
 				</Typography>
 			</Grid>
 

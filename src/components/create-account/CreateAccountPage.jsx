@@ -2,16 +2,15 @@ import React from 'react';
 
 import { RegisterContainer } from './style';
 import InputPassword from '../../layaut/InputPassword';
-import { CssTextField } from '../../utils/styleMaterialUi';
+import { CssTextField, theme } from '../../utils/styleMaterialUi';
 
 import { Container, Button } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-// const CreateAccountPage = ({ classes, desactiveBtn, history, handleChange, isRequired, matches, registerUser, theme }) => (
-const CreateAccountPage = ({ history, handleChange, isRequired, matches, registerUser, theme }) => (
+const CreateAccountPage = ({ history, handleChange, isRequired, matches, registerUser }) => (
 	<RegisterContainer className="d-flex align-items-center p-3">
 		<Container maxWidth="xs" className="container p-5">
-			<h4 className="pl-1 mb-4 text-center">Completa tus datos</h4>
+			<h4 className="pl-1 mb-4 text-center">Crear cuenta</h4>
 
 			<ThemeProvider theme={theme}>
 				<form 
@@ -82,7 +81,6 @@ const CreateAccountPage = ({ history, handleChange, isRequired, matches, registe
 							variant="contained"
 							color="primary"
 							className={`mr-3 ${matches ? 'w-100 mb-3' : ''}`}
-							// disabled={desactiveBtn}
 						>
 					  		Crear
 						</Button>
@@ -90,7 +88,6 @@ const CreateAccountPage = ({ history, handleChange, isRequired, matches, registe
 						<Button
 							color="primary"
 							className={`${matches ? 'w-100' : ''}`}
-							// disabled={desactiveBtn}
 							onClick={() => history.goBack()}
 						>
 					  		Regresar

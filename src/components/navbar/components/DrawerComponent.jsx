@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AddIcon from '@material-ui/icons/Add';
 
-const DrawerComponent = ({ createTask, classes, handleDrawerClose, logout, open }) => (
+const DrawerComponent = ({ createTask, classes, dataUser, handleDrawerClose, logout, open }) => (
 	<Drawer
 		variant="persistent"
 		anchor="left"
@@ -41,7 +41,7 @@ const DrawerComponent = ({ createTask, classes, handleDrawerClose, logout, open 
 		>
 			<div className="d-flex align-items-center mb-3">
 				<Avatar style={{backgroundColor: '#572845'}}>OV</Avatar>
-		
+				{console.log(dataUser)}
 				<Typography
 					variant="body1"
 					component="span"

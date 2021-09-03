@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import compose from "lodash/flowRight";
 
 import ListTasksPage from './components/ListTasksPage';
 import { withTodos } from '../../HOC/withTodos';
-import { withUpdateTodo } from '../../HOC/withUpdateTodo';
-import Spinner from '../../layaut/Spinner';
-import { alert } from '../../utils/alert';
-import { inputsTasks } from '../../utils/helper';
+
+import { Alert } from '@material-ui/lab';
+import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +14,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const ListTasks = ({ todos, updateTodo }) => {
+const ListTasks = ({ todos }) => {
 	
 	const classes = useStyles();
 
@@ -30,30 +28,19 @@ const ListTasks = ({ todos, updateTodo }) => {
 		setRowsPerPage(+event.target.value);
 		setPage(0);
 	};
-
-	const editTask = async id => {
-
-		const { name, description, completed } = todos.find(todo => todo.id === id);
-		const formValues = await inputsTasks('Editar tarea', { name, description });
-		const isEmpty = formValues.some(text => text.trim() === '');
-
-		if (isEmpty) return alert('error', ['Todos los campos son obligatorios']);
-
-		const [nameTask, descriptionTask] = formValues;
-		const data = { name: nameTask, description: descriptionTask, completed };
-
-		updateTodo( id, data );
-		alert('success',  ['Tarea editada con exito']);
-	}
 	
 	return (
 		<React.Fragment>
 			{
-				todos.length === 0 ? <Spinner />
+				todos.length === 0 
+				? <Container maxWidth="sm" className="my-5">
+					<Alert variant="filled" severity="info">
+						<strong>No hay tareas asignadas</strong>
+					</Alert>
+				</Container>
 				: <ListTasksPage
 					classes={classes}
 					data={todos}
-					editTask={editTask}
 					handleChangePage={handleChangePage}
 					handleChangeRowsPerPage={handleChangeRowsPerPage}
 					page={page}
@@ -64,9 +51,4 @@ const ListTasks = ({ todos, updateTodo }) => {
 	)
 }
 
-const ListTasksCompose = compose(
-	withTodos,
-	withUpdateTodo
-)(ListTasks);
-
-export default ListTasksCompose;
+export default withTodos(ListTasks);

@@ -2,7 +2,6 @@ import React from 'react';
 
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import DrawerComponent from './DrawerComponent';
-// import { signOff } from '../../../utils/helper';
 
 import { AppBar, Toolbar, IconButton } from '@material-ui/core';
 
@@ -27,8 +26,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-// const DrawerPage = ({ auth, dataUser, history, isActiveLink, setActiveSearch }) => {
-const DrawerPage = ({ createTask, logout }) => {
+const DrawerPage = ({ createTask, dataUser, logout }) => {
 
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
@@ -61,6 +59,7 @@ const DrawerPage = ({ createTask, logout }) => {
 			<DrawerComponent
 				createTask={createTask}
 				classes={classes}
+				dataUser={dataUser}
 				handleDrawerClose={handleDrawerClose}
 				logout={logout}
 				open={open}

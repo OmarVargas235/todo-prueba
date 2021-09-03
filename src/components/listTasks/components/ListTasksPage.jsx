@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TaskPage from './TaskPage';
+import Task from '../container/Task';
 
 import { Table, TableBody, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { Paper, TableCell, TablePagination } from '@material-ui/core';
@@ -16,7 +16,7 @@ const StyledTableCell = withStyles((theme) => ({
 	},
 }))(TableCell);
 
-const ListTaskspage = ({ classes, data, editTask, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage }) => (
+const ListTaskspage = ({ classes, data, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage }) => (
 	<div className="p-4 p-lg-5">
 		<h4 className="font-weight-normal mb-3 text-light">
 			Lista de tareas
@@ -39,10 +39,9 @@ const ListTaskspage = ({ classes, data, editTask, handleChangePage, handleChange
 					? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					: data
 					).map((row, index) => (
-						<TaskPage
+						<Task
 							key={index}
 							data={row}
-							editTask={editTask}
 						/>
 					))}
 				</TableBody>

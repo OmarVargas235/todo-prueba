@@ -10,6 +10,7 @@ import { login as loginAction } from '../../types/types';
 
 const Login = ({ history }) => {
 
+	// Obtener el email del usuario, del localStorage
 	const getLS = JSON.parse(window.localStorage.getItem('email-todooList')) || '';
 
   	const [ formData, handleChange ] = useForm({
@@ -33,12 +34,13 @@ const Login = ({ history }) => {
 		
 		const { email, password } = formData;
 
-		// Validaciones en el frontend
+		// Comprobar que todos los inputs no esten vacios
 		setIsRequired(required);
 
+		// Validar que el formulario no este vacio
 		if ( validate({ email, password }) ) return;
 
-		// Guardar en el localStorage
+		// (Guardar o Eliminar) en el localStorage si el usuario a marcado la casilla "Recordar"
 		if (checked) window.localStorage.setItem('email-todooList', JSON.stringify({email, checked}));
 		else window.localStorage.removeItem('email-todooList');
 		
@@ -51,6 +53,7 @@ const Login = ({ history }) => {
 
 		alert(ok ? 'success' : 'error', messages);
 
+		// Si no ha, habido ningun error, cambiar "isAuthenticated" a true y guardar el token
 		if (ok) {
 
 			window.localStorage.setItem( 'auth', JSON.stringify( {isAuthenticated: true, token} ) );

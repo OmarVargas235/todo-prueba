@@ -9,6 +9,8 @@ import { alert } from '../../utils/alert';
 import { logoutAuth } from '../../types/types';
 import { requestWithoutToken } from '../../utils/fetch';
 import { ContextAuth } from '../../auth/ContextAuth';
+import { useFetch } from '../../customHooks/useFetch';
+import Spinner from '../../layaut/Spinner';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -18,12 +20,16 @@ const Navbar = ({ createTodo, history }) => {
 
 	const { auth, dispatch } = useContext( ContextAuth );
 
+	const { data, loading } = useFetch('get-user', auth);
+
 	useEffect(() => {
-		
-		async function callAPI() {
+
+		// Revisar si el token de autenticacion ya esta vencido
+		async function checkedIsExperidToken() {
 			
 			const { ok, messages } = await requestWithoutToken('expired-token', auth);
 
+			// Si esta vencido, deslogearlo, borrar el objeto del localStorage y redireccionarlo
 			if (!ok) {
 
 				dispatch({ type: logoutAuth });
@@ -33,7 +39,7 @@ const Navbar = ({ createTodo, history }) => {
 			}
 		}
 
-		callAPI();
+		checkedIsExperidToken();
 		
 	}, [auth]);
 
@@ -53,7 +59,6 @@ const Navbar = ({ createTodo, history }) => {
 
 	const logout = async () => {
 		
-		console.log(auth);
 		const { ok, messages } = await requestWithoutToken('logout-user', auth);
 		
 		if (!ok) return alert('error', messages);
@@ -63,11 +68,17 @@ const Navbar = ({ createTodo, history }) => {
 	}
 	
 	return (
-		<NavbarPage
-			createTask={createTask}
-			logout={logout}
-			matches={matches}
-		/>
+		<React.Fragment>
+			{
+				loading ? <Spinner />
+				: <NavbarPage
+					createTask={createTask}
+					data={data}
+					logout={logout}
+					matches={matches}
+				/>
+			}
+		</React.Fragment>
 	)
 }
 
