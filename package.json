@@ -1,0 +1,38 @@
+{
+  "name": "8base-todomvc",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@8base/app-provider": "0.15.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "4.0.0-alpha.57",
+    "apollo-client": "2.5.1",
+    "graphql": "14.1.1",
+    "graphql-tag": "2.10.1",
+    "lodash": "^4.17.11",
+    "moment": "^2.29.1",
+    "react": "16.8.3",
+    "react-apollo": "2.5.1",
+    "react-dom": "16.8.3",
+    "react-router-dom": "4.2.2",
+    "styled-components": "^5.3.1",
+    "sweetalert2": "^11.1.4",
+    "todomvc-app-css": "2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
