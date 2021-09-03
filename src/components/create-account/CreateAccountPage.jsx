@@ -15,7 +15,6 @@ const CreateAccountPage = ({ history, handleChange, isRequired, matches, registe
 
 			<ThemeProvider theme={theme}>
 				<form 
-					// className='p-5 d-flex flex-column align-items-center d-sm-block' 
 					className='d-flex flex-column' 
 					noValidate 
 					autoComplete="off"
