@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 import CreateAccountPage from './CreateAccountPage';
-// import { alert } from '../../utils/alert';
+import { alert } from '../../utils/alert';
 import { styleMaterialUiTheme } from '../../utils/styleMaterialUi';
 import { useForm } from '../../customHooks/useForm';
 import { useValidateForm } from '../../customHooks/useValidateForm';
+import { requestWithoutToken } from '../../utils/fetch';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -43,21 +44,16 @@ const CreateAccount = ({ history }) => {
 
 		if ( validate({ name, lastName, email, password, repeatPassword }) ) return;
 		
-	// 	// Enviando la data del formulario al backend
-	// 	const { ok, messages } = await requestWithoutToken('create-user', formData, 'POST');
+		// Enviando la data del formulario al backend
+		const { ok, messages } = await requestWithoutToken('create-user', formData);
 
-	// 	alert(ok ? 'success' : 'error', messages);
+		alert(ok ? 'success' : 'error', messages);
 
-	// 	if (ok) history.push('/iniciar-sesion');
-
-	// 	// Desactivando el boton y luego activandolo cuando se quite la alerta
-	// 	setDesactiveBtn(!ok ? true : false);
-	// 	setTimeout(() => setDesactiveBtn(false), 3000);
+		if (ok) history.push('/iniciar-sesion');
 	}
 	
 	return (
 		<CreateAccountPage
-			// desactiveBtn={desactiveBtn}
 			history={history}
 			handleChange={handleChange}
 			isRequired={isRequired}

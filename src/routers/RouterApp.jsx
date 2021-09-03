@@ -10,17 +10,17 @@ const RouterApp = () => (
 	<Router>		
 		<Switch>
 			{
-				true ? <PrivateRouter
+				false ? <PrivateRouter
 					exact
 					component={ DashboardRoutesPrivate }
-					isAuthenticated={ true }
+					isAuthenticated={ false }
 					// isAuthenticated={ auth.isAuthenticated }
 				/>
 				
 				: <PublicRouter
 					exact
 					component={ DashboardRoutesPublic }
-					isAuthenticated={ true }
+					isAuthenticated={ false }
 					// isAuthenticated={ auth.isAuthenticated }
 				/>
 			}
