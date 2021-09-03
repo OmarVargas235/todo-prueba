@@ -43,6 +43,7 @@ const ListTasks = ({ todos, updateTodo }) => {
 		const data = { name: nameTask, description: descriptionTask, completed };
 
 		updateTodo( id, data );
+		alert('success',  ['Tarea editada con exito']);
 	}
 	
 	return (

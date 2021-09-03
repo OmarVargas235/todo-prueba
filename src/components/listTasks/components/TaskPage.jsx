@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import compose from "lodash/flowRight";
 
 import { CssCheckbox } from '../../../utils/styleMaterialUi';
 import { withRemoveTodo } from '../../../HOC/withRemoveTodo';
 import { withToggleTodo } from '../../../HOC/withToggleTodo';
+import { alert } from '../../../utils/alert';
 
 import { TableRow, TableCell } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -30,43 +31,55 @@ const StyledTableRow = withStyles((theme) => ({
 	},
 }))(TableRow);
 
-const TaskPage = ({ data, editTask, removeTodo, toggleTodo }) => (
-	<StyledTableRow>
-		<StyledTableCell component="th" scope="row" align="center">
-			<CssCheckbox
-				checked={data.completed}
-				onChange={ () => toggleTodo({ id: data.id, completed: !data.completed })}
-				inputProps={{ 'aria-label': 'secondary checkbox' }}
-			/>
-		</StyledTableCell>
+const TaskPage = ({ data, editTask, removeTodo, toggleTodo }) => {
 
-		<StyledTableCell align="center">
-			{ data.name }
-		</StyledTableCell>
-		
-		<StyledTableCell align="center">{ data.description }</StyledTableCell>
+	const deleteTask = () => {
 
-		<StyledTableCell align="center">
-			{ moment(data.date, "YYYYMMDD").format('LL') }
-		</StyledTableCell>
+		removeTodo(data.id);
+		alert('success',  ['Tarea eliminada con exito']);
+	}
 
-		<StyledTableCell align="center">
-			<span>	
-				<EditIcon
-					className="mr-3 pointer"
-					style={{fill: '#572845'}}
-					onClick={() => editTask(data.id)}
+	return (
+		<StyledTableRow>
+			<StyledTableCell component="th" scope="row" align="center">
+				<CssCheckbox
+					checked={data.completed}
+					onChange={ () => toggleTodo({ id: data.id, completed: !data.completed })}
+					inputProps={{ 'aria-label': 'secondary checkbox' }}
 				/>
+			</StyledTableCell>
 
-				<DeleteIcon
-					className="pointer"
-					style={{fill: '#572845'}}
-					onClick={() => removeTodo(data.id)}
-				/>	
-			</span>
-		</StyledTableCell>
-	</StyledTableRow>
-)
+			<StyledTableCell
+				align="center"
+				className={data.completed ? 'text-decoration__line-through': ''}
+			>
+				{ data.name }
+			</StyledTableCell>
+			
+			<StyledTableCell align="center">{ data.description }</StyledTableCell>
+
+			<StyledTableCell align="center">
+				{ moment(data.date, "YYYYMMDD").format('LL') }
+			</StyledTableCell>
+
+			<StyledTableCell align="center">
+				<span>	
+					<EditIcon
+						className="mr-3 pointer"
+						style={{fill: '#572845'}}
+						onClick={() => editTask(data.id)}
+					/>
+
+					<DeleteIcon
+						className="pointer"
+						style={{fill: '#572845'}}
+						onClick={deleteTask}
+					/>	
+				</span>
+			</StyledTableCell>
+		</StyledTableRow>
+	)
+}
 
 const TaskPageCompose = compose(
 	withRemoveTodo,

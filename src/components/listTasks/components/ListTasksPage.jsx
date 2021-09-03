@@ -17,7 +17,7 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 const ListTaskspage = ({ classes, data, editTask, handleChangePage, handleChangeRowsPerPage, page, rowsPerPage }) => (
-	<div className="p-5">
+	<div className="p-4 p-lg-5">
 		<h4 className="font-weight-normal mb-3 text-light">
 			Lista de tareas
 		</h4>

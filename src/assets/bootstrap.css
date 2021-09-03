@@ -82,10 +82,6 @@ h6, .h6 {
   cursor: pointer;
 }
 
-.zoom-in {
-  cursor: zoom-in;
-}
-
 .img-fluid {
   max-width: 100%;
   height: auto;
@@ -3243,4 +3239,8 @@ input[type="button"].btn-block {
 
 .text-green {
   color: #36B875 !important;
+}
+
+.text-decoration__line-through {
+  text-decoration: line-through;
 }

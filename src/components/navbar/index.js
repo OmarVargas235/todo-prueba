@@ -21,10 +21,8 @@ const Navbar = ({ createTodo }) => {
 		const [name, description] = formValues;
 		const data = { name, description };
 
-		const resp = createTodo(data);
-		const message = !resp ? ['Ah ocurrido un error']: ['Tarea agregada con exito'];
-		console.log(resp);
-		alert(!resp ? 'error' : 'success',  message);
+		createTodo(data);
+		alert('success',  ['Tarea agregada con exito']);
 	}
 	
 	return (
