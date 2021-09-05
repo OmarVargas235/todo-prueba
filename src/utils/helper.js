@@ -1,19 +1,5 @@
 import Swal from 'sweetalert2';
 import gql from "graphql-tag";
-// import { requestWithoutToken } from './fetch';
-// import { alert } from './alert';
-
-// export const signOff = async (dataUser, dispatch) => {
-
-// 	const { uid } = dataUser;
-// 	const resp = await requestWithoutToken('logout-user', {id: uid}, 'POST');
-// 	const { ok, messages } = resp;
-
-// 	if (!ok) return alert('error', messages);
-	
-// 	dispatch( logoutUser() );
-// 	alert('success', messages);
-// }
 
 export const inputsTasks = async (title, data={name: '', description: ''}) => {
 	

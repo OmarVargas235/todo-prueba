@@ -8,10 +8,10 @@ import { inputsTasks } from '../../../utils/helper';
 import { alert } from '../../../utils/alert';
 
 const Task = ({ data, removeTodo, updateTodo }) => {
+	
+	const editTask = async () => {
 
-	const editTask = async id => {
-
-		const { name, description, completed } = data.find(todo => todo.id === id);
+		const { id, name, description, completed } = data;
 		const formValues = await inputsTasks('Editar tarea', { name, description });
 		const isEmpty = formValues.some(text => text.trim() === '');
 

@@ -5,6 +5,7 @@ import 'moment/locale/es';
 
 import './assets/bootstrap.css';
 import RouterApp from './routers/RouterApp';
+import Spinner from './layaut/Spinner';
 
 const Body = createGlobalStyle`
 
@@ -46,7 +47,7 @@ const ENDPOINT_URL = 'https://api.8base.com/ckt09803d043008jl0t8od7cg';
 
 const App = () => (
 		<EightBaseAppProvider uri={ENDPOINT_URL}>
-			{({ loading }) => loading ? <div>"Loading..."</div> : (
+			{({ loading }) => loading ? <Spinner /> : (
 				<React.Fragment>
 					<Body />
 					<RouterApp />

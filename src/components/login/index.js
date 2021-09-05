@@ -28,6 +28,13 @@ const Login = ({ history }) => {
 	const [isRequired, setIsRequired] = useState({email: false, password: false});
 	const [checked, setChecked] = useState(getLS ? getLS.checked : false);
 
+	// (Guardar o Eliminar) en el localStorage si el usuario a marcado la casilla "Recordar"
+	const saveLSEmail = email => {
+		
+		checked ? window.localStorage.setItem('email-todooList', JSON.stringify({email, checked}))
+		: window.localStorage.removeItem('email-todooList');
+	}
+
 	const login = async e => {
 		
 		e.preventDefault();
@@ -40,9 +47,7 @@ const Login = ({ history }) => {
 		// Validar que el formulario no este vacio
 		if ( validate({ email, password }) ) return;
 
-		// (Guardar o Eliminar) en el localStorage si el usuario a marcado la casilla "Recordar"
-		if (checked) window.localStorage.setItem('email-todooList', JSON.stringify({email, checked}));
-		else window.localStorage.removeItem('email-todooList');
+		saveLSEmail(email);
 		
 		// Enviando la data del formulario al backend
 		const { ok, messages, token } = await requestWithoutToken('login-user', formData);

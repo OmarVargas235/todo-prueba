@@ -41,7 +41,7 @@ const DrawerComponent = ({ createTask, classes, dataUser, handleDrawerClose, log
 		>
 			<div className="d-flex align-items-center mb-3">
 				<Avatar style={{backgroundColor: '#572845'}}>OV</Avatar>
-				{console.log(dataUser)}
+				
 				<Typography
 					variant="body1"
 					component="span"

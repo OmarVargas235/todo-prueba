@@ -56,7 +56,7 @@ const TaskPage = ({ data, deleteTask, editTask, toggleTodo }) => (
 				<EditIcon
 					className="mr-3 pointer"
 					style={{fill: '#572845'}}
-					onClick={() => editTask(data.id)}
+					onClick={editTask}
 				/>
 
 				<DeleteIcon
